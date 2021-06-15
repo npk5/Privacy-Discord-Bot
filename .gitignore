@@ -1,0 +1,14 @@
+# IDEA
+.idea
+*.iml
+
+# Node
+node_modules
+package-lock.json
+
+# TypeScript
+*.js
+*.js.map
+
+# Config
+config.json
