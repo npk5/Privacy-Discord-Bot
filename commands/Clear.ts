@@ -12,7 +12,8 @@ export class Clear extends Action {
 		if (this.args.length == 1)
 			this.amount = parseInt(this.args[0]) + 1;
 
-		if (isNaN(this.amount) || this.args.length > 1
+		if ((this.amount != undefined && isNaN(this.amount))
+			|| this.args.length > 1
 			|| message.channel instanceof Discord.DMChannel) {
 			this.malformed = true;
 		} else {
@@ -24,7 +25,7 @@ export class Clear extends Action {
 		let amount: number = this.amount;
 		let toRemove: number;
 		do {
-			toRemove = this.amount == undefined ? 100 : Math.min(this.amount, 100);
+			toRemove = amount == undefined ? 100 : Math.min(amount, 100);
 			amount -= toRemove;
 		} while (toRemove <= 0 || !await this.channel.bulkDelete(toRemove).then(r => r.size));
 	}
